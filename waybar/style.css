@@ -1,0 +1,221 @@
+@import "../omarchy/current/theme/waybar.css";
+
+* {
+  background-color: transparent;
+  color: @foreground;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 11px;
+}
+
+window#waybar {
+  background-color: rgba(17, 17, 27, 0.85);
+  border-bottom: 1px solid rgba(205, 214, 244, 0.08);
+}
+
+.modules-left {
+  margin-left: 6px;
+}
+
+.modules-right {
+  margin-right: 6px;
+}
+
+/* ── módulo base ─────────────────────────────────── */
+#workspaces,
+#clock,
+#cpu,
+#memory,
+#battery,
+#pulseaudio,
+#bluetooth,
+#network,
+#tray,
+#custom-omarchy,
+#custom-update,
+#custom-voxtype,
+#custom-expand-icon,
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator,
+.tray-group-item {
+  background-color: rgba(30, 30, 46, 0.75);
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin: 4px 2px;
+}
+
+/* ── workspaces ──────────────────────────────────── */
+#workspaces {
+  padding: 2px 4px;
+}
+
+#workspaces button {
+  all: initial;
+  color: rgba(205, 214, 244, 0.45);
+  padding: 0 5px;
+  margin: 0 1px;
+  min-width: 9px;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 11px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+#workspaces button:hover {
+  color: @foreground;
+  background-color: rgba(205, 214, 244, 0.08);
+}
+
+#workspaces button.active {
+  color: #cba6f7;
+}
+
+#workspaces button.empty {
+  opacity: 0.3;
+}
+
+/* ── omarchy logo ────────────────────────────────── */
+#custom-omarchy {
+  color: #cba6f7;
+  padding: 2px 10px;
+  font-size: 14px;
+}
+
+/* ── reloj ───────────────────────────────────────── */
+#clock {
+  color: #cdd6f4;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: 2px 12px;
+  margin: 4px 4px;
+}
+
+/* ── CPU ─────────────────────────────────────────── */
+#cpu {
+  color: #89dceb;
+}
+
+/* ── RAM ─────────────────────────────────────────── */
+#memory {
+  color: #a6e3a1;
+}
+
+/* ── red download / upload ───────────────────────── */
+#network.download,
+label.network-download {
+  color: #89b4fa;
+}
+
+#network.upload,
+label.network-upload {
+  color: #f38ba8;
+}
+
+/* ── red (icono principal) ───────────────────────── */
+#network {
+  color: #89b4fa;
+  margin-right: 2px;
+}
+
+/* ── audio ───────────────────────────────────────── */
+#pulseaudio {
+  color: #f9e2af;
+}
+
+#pulseaudio.muted {
+  color: rgba(249, 226, 175, 0.35);
+}
+
+/* ── bluetooth ───────────────────────────────────── */
+#bluetooth {
+  color: #89b4fa;
+  margin-right: 2px;
+}
+
+/* ── batería ─────────────────────────────────────── */
+#battery {
+  color: #a6e3a1;
+}
+
+#battery.warning {
+  color: #f9e2af;
+}
+
+#battery.critical {
+  color: #f38ba8;
+  animation: blink 1s step-start infinite;
+}
+
+#battery.charging {
+  color: #a6e3a1;
+}
+
+@keyframes blink {
+  50% { opacity: 0.4; }
+}
+
+/* ── tray ────────────────────────────────────────── */
+#tray {
+  margin-right: 2px;
+  padding: 2px 6px;
+}
+
+#custom-expand-icon {
+  padding: 2px 6px;
+  color: rgba(205, 214, 244, 0.5);
+}
+
+/* ── indicadores centrales ───────────────────────── */
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  font-size: 10px;
+  padding: 2px 6px;
+  margin: 4px 1px;
+}
+
+#custom-screenrecording-indicator.active,
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
+  color: #f38ba8;
+}
+
+/* ── voxtype ─────────────────────────────────────── */
+#custom-voxtype {
+  padding: 2px 6px;
+  color: rgba(205, 214, 244, 0.45);
+}
+
+#custom-voxtype.recording {
+  color: #f38ba8;
+}
+
+#custom-voxtype.transcribing {
+  color: #f9e2af;
+}
+
+/* ── update ──────────────────────────────────────── */
+#custom-update {
+  font-size: 10px;
+  color: #f9e2af;
+}
+
+/* ── tooltip ─────────────────────────────────────── */
+tooltip {
+  background-color: rgba(17, 17, 27, 0.95);
+  border: 1px solid rgba(205, 214, 244, 0.12);
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: @foreground;
+}
+
+.hidden {
+  opacity: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+}

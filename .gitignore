@@ -1,0 +1,14 @@
+# Archivos de backup
+*.bak
+*.orig
+
+# Archivos con info sensible — NO versionar
+hypr/monitors.conf.local
+ghostty/config.local
+
+# Neovim — no versionar el estado
+nvim/lazy-lock.json
+
+# OS
+.DS_Store
+Thumbs.db
