@@ -21,54 +21,45 @@ chmod +x install.sh
 ```
 dotfiles/
 ├── hypr/                     # Configuración de Hyprland
-│   ├── hyprland.conf         # Config principal (sources omarchy defaults)
-│   ├── bindings.conf         # Atajos de teclado personalizados
-│   ├── monitors.conf         # Configuración de monitores ⚠️ ajustar por PC
+│   ├── hyprland.conf         # Config principal
+│   ├── bindings.conf         # Atajos de teclado
+│   ├── monitors.conf         # ⚠️ Ajustar por PC
 │   ├── input.conf            # Teclado, ratón, touchpad
 │   └── hypridle.conf         # Screensaver automático (5 min)
 ├── waybar/                   # Barra de estado
-│   ├── config.jsonc          # Módulos y layout
-│   └── style.css             # Estilos
+│   ├── config.jsonc
+│   └── style.css
 ├── ghostty/                  # Terminal
-│   └── config                # Font, padding, keybinds
+│   └── config
 ├── nvim/                     # Neovim (LazyVim)
 │   ├── init.lua
 │   ├── lua/
 │   └── plugin/
+├── starship/                 # Prompt (Catppuccin Mocha)
+│   └── starship.toml
 ├── omarchy/                  # Extensiones de OmarchyOS
 │   ├── extensions/
-│   │   └── menu.sh           # Menú personalizado
-│   ├── hooks/                # Hooks de eventos (battery-low, etc)
-│   └── themed/               # Templates de temas
-├── install.sh                # Script de instalación
+│   │   └── menu.sh
+│   ├── hooks/
+│   └── themed/
+├── install.sh
 └── README.md
 ```
 
-## Notas importantes
+## Notas
 
 ### Monitores
-`hypr/monitors.conf` está configurado para mi setup específico:
-- `DP-1`: 1440x900@60
-- `HDMI-A-1`: 2560x1440@100
-
-**Ajusta este archivo** según tus monitores antes de aplicar:
+`hypr/monitors.conf` tiene mi setup específico (DP-1 + HDMI-A-1).
+Ajústalo antes de correr el script:
 ```bash
 hyprctl monitors  # Ver monitores disponibles
 ```
 
 ### Fix xdg-desktop-portal-hyprland
-El `install.sh` detecta automáticamente si tienes la versión `1.3.11-4`
-(que tiene un bug SIGSEGV que mata hyprlock) y la recompila desde git.
+El script detecta automáticamente la versión `1.3.11-4` (bug SIGSEGV)
+y la recompila desde git HEAD.
 
-### Stow
-Los dotfiles usan [GNU Stow](https://www.gnu.org/software/stow/) para
-crear symlinks. Esto significa que editar los archivos en `~/.config/`
-actualiza automáticamente el repo.
-
-## Actualizar
-
+### Actualizar
 ```bash
-cd ~/.dotfiles
-git pull
-./install.sh
+cd ~/.dotfiles && git pull && ./install.sh
 ```

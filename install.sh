@@ -43,7 +43,7 @@ check_omarchy() {
 }
 
 check_deps() {
-  local deps=("git" "stow")
+  local deps=("git" "stow" "starship")
   local missing=()
   for dep in "${deps[@]}"; do
     command -v "$dep" &>/dev/null || missing+=("$dep")
@@ -70,6 +70,7 @@ backup_existing() {
     "$CONFIG/waybar/config.jsonc"
     "$CONFIG/waybar/style.css"
     "$CONFIG/ghostty/config"
+    "$CONFIG/starship.toml"
   )
 
   local needs_backup=false
@@ -81,8 +82,7 @@ backup_existing() {
     mkdir -p "$BACKUP_DIR"
     for f in "${files_to_backup[@]}"; do
       if [ -f "$f" ]; then
-        local dest="$BACKUP_DIR/$(basename "$f")"
-        cp "$f" "$dest"
+        cp "$f" "$BACKUP_DIR/$(basename "$f")"
       fi
     done
     info "Backup guardado en $BACKUP_DIR"
@@ -94,20 +94,25 @@ backup_existing() {
 # =============================================================================
 
 link_configs() {
-  local dirs=("hypr" "waybar" "ghostty" "nvim" "omarchy")
-
-  for dir in "${dirs[@]}"; do
+  # Configs que van en ~/.config/
+  local config_dirs=("hypr" "waybar" "ghostty" "nvim" "omarchy")
+  for dir in "${config_dirs[@]}"; do
     if [ -d "$DOTFILES_DIR/$dir" ]; then
-      # stow crea symlinks desde dotfiles/X -> ~/.config/X
       stow --target="$CONFIG" --dir="$DOTFILES_DIR" "$dir" --restow 2>/dev/null && \
-        info "Linked: $dir" || \
+        info "Linked: ~/.config/$dir" || \
         warning "Conflicto en $dir — revisa manualmente"
     fi
   done
+
+  # starship.toml va directo en ~/.config/ (no en subdirectorio)
+  if [ -f "$DOTFILES_DIR/starship/starship.toml" ]; then
+    ln -sf "$DOTFILES_DIR/starship/starship.toml" "$CONFIG/starship.toml"
+    info "Linked: ~/.config/starship.toml"
+  fi
 }
 
 # =============================================================================
-# HYPRIDLE — asegurarse que corra al inicio
+# HYPRIDLE
 # =============================================================================
 
 setup_hypridle() {
@@ -124,7 +129,6 @@ fix_portal() {
   local current_version
   current_version=$(pacman -Qi xdg-desktop-portal-hyprland 2>/dev/null | grep Version | awk '{print $3}')
 
-  # La versión 1.3.11-4 tiene el bug del SIGSEGV
   if [[ "$current_version" == "1.3.11-4" ]]; then
     warning "Versión con bug detectada ($current_version) — compilando desde git..."
     cd /tmp
@@ -184,5 +188,5 @@ reload_services
 echo ""
 info "¡Dotfiles aplicados correctamente!"
 echo ""
-echo "  Recuerda ajustar ~/.config/hypr/monitors.conf con tus monitores."
+echo "  ⚠️  Recuerda ajustar ~/.config/hypr/monitors.conf con tus monitores."
 echo ""
