@@ -112,16 +112,6 @@ link_configs() {
 }
 
 # =============================================================================
-# HYPRIDLE
-# =============================================================================
-
-setup_hypridle() {
-  systemctl --user enable --now hypridle 2>/dev/null && \
-    info "hypridle habilitado" || \
-    warning "hypridle ya estaba habilitado o no disponible"
-}
-
-# =============================================================================
 # RECARGAR
 # =============================================================================
 
@@ -149,10 +139,6 @@ backup_existing
 echo ""
 echo "Aplicando dotfiles..."
 link_configs
-
-echo ""
-echo "Configurando servicios..."
-setup_hypridle
 
 echo ""
 echo "Recargando..."
