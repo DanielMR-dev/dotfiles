@@ -104,7 +104,7 @@ link_configs() {
     fi
   done
 
-  # starship.toml va directo en ~/.config/ (no en subdirectorio)
+  # starship.toml va directo en ~/.config/
   if [ -f "$DOTFILES_DIR/starship/starship.toml" ]; then
     ln -sf "$DOTFILES_DIR/starship/starship.toml" "$CONFIG/starship.toml"
     info "Linked: ~/.config/starship.toml"
@@ -119,32 +119,6 @@ setup_hypridle() {
   systemctl --user enable --now hypridle 2>/dev/null && \
     info "hypridle habilitado" || \
     warning "hypridle ya estaba habilitado o no disponible"
-}
-
-# =============================================================================
-# xdg-desktop-portal-hyprland — compilar desde git si versión con bug
-# =============================================================================
-
-fix_portal() {
-  local current_version
-  current_version=$(pacman -Qi xdg-desktop-portal-hyprland 2>/dev/null | grep Version | awk '{print $3}')
-
-  if [[ "$current_version" == "1.3.11-4" ]]; then
-    warning "Versión con bug detectada ($current_version) — compilando desde git..."
-    cd /tmp
-    [ -d xdg-desktop-portal-hyprland ] && rm -rf xdg-desktop-portal-hyprland
-    git clone https://github.com/hyprwm/xdg-desktop-portal-hyprland
-    cd xdg-desktop-portal-hyprland
-    cmake -B build -G Ninja \
-      -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_INSTALL_PREFIX=/usr
-    cmake --build build -j"$(nproc)"
-    sudo cmake --install build
-    systemctl --user restart xdg-desktop-portal-hyprland
-    info "xdg-desktop-portal-hyprland actualizado desde git"
-  else
-    info "xdg-desktop-portal-hyprland OK ($current_version)"
-  fi
 }
 
 # =============================================================================
@@ -179,7 +153,6 @@ link_configs
 echo ""
 echo "Configurando servicios..."
 setup_hypridle
-fix_portal
 
 echo ""
 echo "Recargando..."

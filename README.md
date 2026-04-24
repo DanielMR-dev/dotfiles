@@ -55,10 +55,6 @@ Ajústalo antes de correr el script:
 hyprctl monitors  # Ver monitores disponibles
 ```
 
-### Fix xdg-desktop-portal-hyprland
-El script detecta automáticamente la versión `1.3.11-4` (bug SIGSEGV)
-y la recompila desde git HEAD.
-
 ### Actualizar
 ```bash
 cd ~/.dotfiles && git pull && ./install.sh
