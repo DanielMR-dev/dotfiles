@@ -219,3 +219,19 @@ tooltip {
   padding: 0;
   margin: 0;
 }
+
+/* ── ProtonVPN ───────────────────────────────────── */
+#custom-protonvpn {
+  color: #a6e3a1;
+  padding: 2px 8px;
+  margin: 4px 2px;
+  background-color: rgba(30, 30, 46, 0.75);
+  border-radius: 6px;
+}
+
+#custom-protonvpn.disconnected {
+  opacity: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+}
