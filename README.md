@@ -6,6 +6,7 @@ Personalizaciones sobre [OmarchyOS](https://omarchy.org) (Arch Linux + Hyprland)
 
 - OmarchyOS instalado
 - `git` y `stow` (`sudo pacman -S stow`)
+- `zsh`, `fzf`, `zsh-autosuggestions` (se instalan automáticamente con `install.sh`)
 
 ## Instalación
 
@@ -31,12 +32,10 @@ dotfiles/
 │   └── style.css
 ├── ghostty/                  # Terminal
 │   └── config
-├── nvim/                     # Neovim (LazyVim)
-│   ├── init.lua
-│   ├── lua/
-│   └── plugin/
 ├── starship/                 # Prompt (Catppuccin Mocha)
 │   └── starship.toml
+├── zsh/                      # Configuración de Zsh
+│   └── .zshrc                # Oh My Zsh + Starship + fzf
 ├── omarchy/                  # Extensiones de OmarchyOS
 │   ├── extensions/
 │   │   └── menu.sh
@@ -49,7 +48,7 @@ dotfiles/
 ## Notas
 
 ### Monitores
-`hypr/monitors.conf` tiene mi setup específico (DP-1 + HDMI-A-1).
+`hypr/monitors.conf` tiene mi setup específico
 Ajústalo antes de correr el script:
 ```bash
 hyprctl monitors  # Ver monitores disponibles

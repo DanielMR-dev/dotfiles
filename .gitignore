@@ -6,9 +6,6 @@
 hypr/monitors.conf.local
 ghostty/config.local
 
-# Neovim — no versionar el estado
-nvim/lazy-lock.json
-
 # OS
 .DS_Store
 Thumbs.db
