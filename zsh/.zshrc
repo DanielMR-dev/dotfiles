@@ -26,5 +26,8 @@ elif [ -f /usr/share/doc/fzf/examples/completion.zsh ]; then
   source /usr/share/doc/fzf/examples/completion.zsh
 fi
 
-# Cargar aliases de Omarchy (incluye eza, etc.)
-source ~/.local/share/omarchy/default/bash/aliases
+# Aliases eza
+alias ls='eza --icons'
+alias ll='eza -lh --icons'
+alias la='eza -lah --icons'
+alias lt='eza --tree --icons'
