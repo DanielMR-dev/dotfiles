@@ -8,9 +8,9 @@ gtk-titlebar = false
 # Catppuccin Mocha
 background = #000000
 foreground = #e0e0e0
-selection-background = #003566
+selection-background = #515961
 selection-foreground = #ffffff
-cursor-color = #00ffff
+cursor-color = #ffffff
 cursor-text = #0d0d0d
 
 # Colores normales (0-7)
